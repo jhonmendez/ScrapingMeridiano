@@ -34,17 +34,17 @@ public class Scraper {
 			
 			Document document = Jsoup.connect(url).get();
 			
+			
+			
+			Elements div = document.select("div.News-content-description");
+			Element element = div.get(0);
+			
 			String titulo = document.select("h1").text();
+			String contenido = element.text();
 			
-			Elements contenido = document.select("div.News-content-description");
+			System.out.println("Titulo: " +  titulo);
+			System.out.println("Contenido: " + contenido);
 			
-			System.out.println("Titulo:" +  titulo);
-			
-			System.out.println("\n\nContenido:" +  contenido);
-			
-			for (Element element : contenido) {
-				System.out.println(element.text());
-			}
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -57,7 +57,7 @@ public class Scraper {
 	
 	public static void main(String[] args) {
 		
-		String url = "https://elmeridiano.co/noticia/capturado-en-tuchin-tenia-una-cuenta-pendiente-en-sucre";
+		String url = "https://elmeridiano.co/noticia/confirman-crimen-de-policia-en-el-bajo-cauca-antioque%C3%B1o-";
 		
 		new Scraper().scrapingPaginaMeridiano(url);
 		
